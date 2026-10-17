@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="resume-section text-center">
+    <h1>Головна сторінка</h1>
+    <p>Ласкаво просимо до мого Flask-додатку!</p>
+    <p>Лабораторна робота №3 — Модульна структура та Blueprints.</p>
+
+    <a href="{{ url_for('resume') }}" class="btn btn-primary">
+        Переглянути резюме
+    </a>
+</section>
+{% endblock %}
