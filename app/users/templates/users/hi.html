@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <aside class="col-md-3 mb-4">
+        <nav class="user-menu">
+            <h5>Користувачі</h5>
+
+            <a href="{{ url_for('users.greetings', name='John', age=30) }}">
+                Привітати John
+            </a>
+
+            <a href="{{ url_for('users.admin') }}">
+                Адміністратор
+            </a>
+        </nav>
+    </aside>
+
+    <section class="col-md-9">
+        <div class="resume-section">
+            <h1>Hello :)</h1>
+            <h2>User: {{ name | upper }}</h2>
+
+            {% if age is not none %}
+                <p class="text-success">Age: {{ age }}</p>
+            {% else %}
+                <p class="text-danger">Age: Not provided</p>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}
