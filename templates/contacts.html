@@ -1,6 +1,32 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Контакти</h1>
-    <p>Сторінка контактів працює!</p>
+<section class="contact-section">
+    <h1 class="mb-4">Контакти</h1>
+
+    <p>Email: ruslan.budziak.24@pnu.edu.ua</p>
+    <p>GitHub: <a href="https://github.com/DeksiE" target="_blank">Мій GitHub</a></p>
+
+    <h2 class="mt-5 mb-3">Написати повідомлення</h2>
+
+    <form action="#" method="post" onsubmit="event.preventDefault(); alert('Демонстраційна форма. Повідомлення не відправлено.');">
+        <div class="mb-3">
+            <label for="name" class="form-label">Ім'я</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Повідомлення</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Надіслати</button>
+    </form>
+</section>
 {% endblock %}

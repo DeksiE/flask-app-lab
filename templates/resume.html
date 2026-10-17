@@ -1,6 +1,61 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Моє резюме</h1>
-    <p>Сторінка резюме працює!</p>
+<div class="resume-header text-center mb-5">
+    <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+         alt="Фото профілю" class="profile-photo mb-3">
+    <h1>Руслан Будзяк</h1>
+    <p class="lead">Студент | Python Developer</p>
+</div>
+
+<nav class="section-nav mb-4">
+    <a href="#about">Про себе</a>
+    <a href="#education">Освіта</a>
+    <a href="#skills">Навички</a>
+    <a href="#technologies">Технології</a>
+    <a href="#projects">Проєкти</a>
+</nav>
+
+<section id="about" class="resume-section">
+    <h2>Про себе</h2>
+    <p>Я студент, який цікавиться веброзробкою та програмуванням.
+       Вивчаю Python, JavaScript та сучасні вебтехнології.</p>
+</section>
+
+<section id="education" class="resume-section">
+    <h2>Освіта</h2>
+    <p>Навчаюся в університеті КНУВС, за спеціальністю
+       Інженерія програмного забезпечення</p>
+</section>
+
+<section id="skills" class="resume-section">
+    <h2>Навички</h2>
+    <ul>
+        <li>Розробка вебдодатків</li>
+        <li>Робота з базами даних</li>
+        <li>Використання Git та GitHub</li>
+        <li>Командна робота</li>
+    </ul>
+</section>
+
+<section id="technologies" class="resume-section">
+    <h2>Технології</h2>
+    <div class="d-flex flex-wrap gap-2">
+        <span class="badge bg-primary">Python</span>
+        <span class="badge bg-primary">Flask</span>
+        <span class="badge bg-primary">HTML</span>
+        <span class="badge bg-primary">CSS</span>
+        <span class="badge bg-primary">JavaScript</span>
+        <span class="badge bg-primary">SQL</span>
+        <span class="badge bg-primary">Git</span>
+    </div>
+</section>
+
+<section id="projects" class="resume-section">
+    <h2>Проєкти</h2>
+    <h5>Flask вебдодаток</h5>
+    <p>Створення вебдодатку з маршрутизацією, HTML-шаблонами
+       та стилізацією за допомогою Bootstrap.</p>
+</section>
 {% endblock %}
