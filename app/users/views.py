@@ -46,11 +46,17 @@ def profile():
         if key != 'session'
     }
 
+    theme = request.cookies.get('theme', 'light')
+
+    if theme not in ['light', 'dark']:
+        theme = 'light'
+
     return render_template(
         'users/profile.html',
         title='Профіль',
         username=username,
-        cookies=cookies
+        cookies=cookies,
+        theme=theme
     )
 
 
@@ -110,4 +116,20 @@ def delete_all_cookies():
             response.delete_cookie(key)
 
     flash('Кукі видалено!', 'success')
+    return response
+
+@users_bp.route('/theme/<theme>', methods=['POST'])
+def change_theme(theme):
+    if 'username' not in session:
+        flash('Спочатку увійдіть у систему!', 'danger')
+        return redirect(url_for('users.login'))
+
+    if theme not in ['light', 'dark']:
+        flash('Невідома тема!', 'danger')
+        return redirect(url_for('users.profile'))
+
+    response = make_response(redirect(url_for('users.profile')))
+    response.set_cookie('theme', theme, max_age=30 * 24 * 60 * 60)
+
+    flash('Кольорову схему змінено!', 'success')
     return response
