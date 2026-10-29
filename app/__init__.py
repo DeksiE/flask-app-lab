@@ -1,6 +1,9 @@
+import os
 from flask import Flask
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 from . import views
 from .users import users_bp
