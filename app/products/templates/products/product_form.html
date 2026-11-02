@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% from '_form_macros.html' import render_field %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h1 class="mb-4">{{ heading }}</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            {{ render_field(form.name) }}
+            {{ render_field(form.content) }}
+            {{ render_field(form.price) }}
+            {{ render_field(form.category) }}
+            {{ render_field(form.quantity) }}
+            {{ render_field(form.image) }}
+
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

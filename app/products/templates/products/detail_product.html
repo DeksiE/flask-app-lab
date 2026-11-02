@@ -6,10 +6,19 @@
     <div class="card-body p-4">
         <h1>{{ product.name }}</h1>
 
-        <hr>
+        {% if product.image %}
+            <img src="{{ url_for('products.static', filename=product.image) }}"
+                 alt="{{ product.name }}"
+                 class="img-fluid rounded mb-3"
+                 style="max-height: 350px;">
+        {% endif %}
 
         <p><strong>ID:</strong> {{ product.id }}</p>
+        <p><strong>Категорія:</strong> {{ product.category }}</p>
         <p><strong>Опис:</strong> {{ product.content }}</p>
+        <p><strong>Кількість:</strong> {{ product.quantity }}</p>
+        <p><strong>Дата створення:</strong> {{ product.created_at }}</p>
+
         <p class="fs-4 text-primary">
             <strong>Ціна: ${{ product.price }}</strong>
         </p>
