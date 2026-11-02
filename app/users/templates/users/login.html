@@ -9,6 +9,8 @@
                 <h1 class="text-center mb-4">Вхід</h1>
 
                 <form method="POST" action="{{ url_for('users.login') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                     <div class="mb-3">
                         <label for="username" class="form-label">Ім'я користувача</label>
                         <input type="text" class="form-control"

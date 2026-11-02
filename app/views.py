@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from decimal import Decimal
 
 from flask import render_template, redirect, url_for, flash
 from . import app

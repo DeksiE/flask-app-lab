@@ -2,6 +2,7 @@
 from datetime import datetime
 from pathlib import Path
 from uuid import uuid4
+from decimal import Decimal
 
 from flask import (
     render_template, redirect, url_for,
@@ -91,3 +92,65 @@ def add_product():
         form=form,
         heading='Додати товар'
     )
+
+
+@products_bp.route('/<int:product_id>/edit', methods=['GET', 'POST'])
+def edit_product(product_id):
+    product = products_table.get(doc_id=product_id)
+
+    if product is None:
+        abort(404)
+
+    form = ProductForm()
+
+    if request.method == 'GET':
+        form.name.data = product['name']
+        form.content.data = product['content']
+        form.price.data = Decimal(product['price'])
+        form.category.data = product['category']
+        form.quantity.data = product['quantity']
+
+    if form.validate_on_submit():
+        image_path = product.get('image')
+
+        if form.image.data and form.image.data.filename:
+            image_path = save_image(form.image.data)
+
+        updated_product = {
+            'name': form.name.data,
+            'content': form.content.data,
+            'price': str(form.price.data),
+            'category': form.category.data,
+            'quantity': form.quantity.data,
+            'image': image_path
+        }
+
+        products_table.update(updated_product, doc_ids=[product_id])
+
+        flash('Товар успішно оновлено!', 'success')
+        return redirect(
+            url_for('products.product_detail', product_id=product_id)
+        )
+
+    if form.is_submitted() and form.errors:
+        flash('Перевірте правильність заповнення форми.', 'danger')
+
+    return render_template(
+        'products/product_form.html',
+        title='Редагувати товар',
+        form=form,
+        heading='Редагувати товар'
+    )
+
+
+@products_bp.route('/<int:product_id>/delete', methods=['POST'])
+def delete_product(product_id):
+    product = products_table.get(doc_id=product_id)
+
+    if product is None:
+        abort(404)
+
+    products_table.remove(doc_ids=[product_id])
+
+    flash('Товар успішно видалено!', 'success')
+    return redirect(url_for('products.product_list'))

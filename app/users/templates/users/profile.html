@@ -15,12 +15,16 @@
 
             <div class="d-flex gap-2 mb-4">
                 <form method="POST" action="{{ url_for('users.change_theme', theme='light') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                     <button type="submit" class="btn btn-outline-primary">
                         Світла тема
                     </button>
                 </form>
 
                 <form method="POST" action="{{ url_for('users.change_theme', theme='dark') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                     <button type="submit" class="btn btn-dark">
                         Темна тема
                     </button>
@@ -28,6 +32,8 @@
             </div>
 
             <form method="POST" action="{{ url_for('users.logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                 <button type="submit" class="btn btn-danger">
                     Вийти
                 </button>
@@ -38,6 +44,8 @@
             <h3>Додати кукі</h3>
 
             <form method="POST" action="{{ url_for('users.add_cookie') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                 <div class="row g-3">
                     <div class="col-md-4">
                         <label class="form-label">Ключ</label>
@@ -66,6 +74,8 @@
             <h3>Видалити кукі за ключем</h3>
 
             <form method="POST" action="{{ url_for('users.delete_cookie') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                 <input type="text" name="key" class="form-control mb-3"
                        placeholder="Введіть ключ кукі" required>
 
@@ -79,6 +89,8 @@
             <h3>Видалити всі кукі</h3>
 
             <form method="POST" action="{{ url_for('users.delete_all_cookies') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                 <button type="submit" class="btn btn-danger">
                     Видалити всі
                 </button>

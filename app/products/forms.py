@@ -8,7 +8,8 @@ from wtforms import (
     SelectField, IntegerField, SubmitField
 )
 from wtforms.validators import (
-    DataRequired, Length, NumberRange, Optional, ValidationError
+    DataRequired, InputRequired, Length,
+    NumberRange, Optional, ValidationError
 )
 
 
@@ -50,6 +51,7 @@ class ProductForm(FlaskForm):
     quantity = IntegerField(
         'Кількість',
         validators=[
+            InputRequired(message='Введіть кількість'),
             NumberRange(min=0, message='Кількість не може бути від’ємною')
         ]
     )
